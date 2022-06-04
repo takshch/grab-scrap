@@ -1,3 +1,5 @@
+const { pick } = require('../utils/object');
+
 /**
  * sanitizes the search suggestion data
  * @param {Object} data  - Received JSON from grab api
@@ -19,4 +21,41 @@ const suggestion = (data) => {
   return sanitizedData || [];
 };
 
-module.exports = { suggestion };
+
+const MERCHANT_DATA_KEYS = [
+  'id',
+  'address',
+  'latlng',
+  'merchantBrief',
+  'chainID',
+  'chainName',
+  'branchMerchants',
+  'branchName',
+  'estimatedDeliveryFee',
+  'dishes',
+  'estimatedPickupTime',
+  'discountPercentage',
+  'businessType',
+  'littleIconLabel',
+  'customLabel'
+];
+
+const search = (data) => {
+  let sanitizedData = [];
+
+  const { searchResult } = data;
+
+  if (searchResult) {
+    const { searchMerchants } = searchResult;
+
+    if (searchMerchants) {
+      sanitizedData = searchMerchants.map((merchant) => {
+        return pick(merchant, MERCHANT_DATA_KEYS);
+      });
+    }
+  }
+
+  return sanitizedData;
+};
+
+module.exports = { suggestion, search };

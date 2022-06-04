@@ -52,8 +52,9 @@ const search = async ({ latlng = '', keyword = '', searchId = '', offset = 0 } =
     const { data } = await axios.post(SEARCH_API, postData, {
       headers: HEADERS
     });
+    const sanitizedData = Sanitizer.search(data);
 
-    return data;
+    return sanitizedData;
   } catch (err) {
     throw err;
   }
