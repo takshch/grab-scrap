@@ -2,6 +2,7 @@ const axios = require('axios');
 const config = require('config');
 const { uuid } = require('uuidv4');
 const { SEARCH_API, SEARCH_SUGGESTION_API, USER_AGENT } = require('../utils/constants');
+const Sanitizer = require('../sanitizers/search');
 
 const SESSION_ID = config.get('sessionId');
 
@@ -22,11 +23,10 @@ const suggestion = async ({ latitude = '', longitude = '', keyword = '' } = {}) 
   url = url.toString();
 
   try {
-    const { data } = await axios.get(url, {
-      headers: HEADERS
-    });
+    const { data } = await axios.get(url, { headers: HEADERS });
+    const sanitizedData = Sanitizer.suggestion(data);
 
-    return data;
+    return sanitizedData;
   } catch (err) {
     throw err;
   }
