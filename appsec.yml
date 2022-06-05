@@ -5,11 +5,11 @@ files:
     destination: /home/ec2-user/server
 hooks:
   BeforeInstall:
-    - location: /hooks_scripts/before-install.sh
+    - location: /hooks-scripts/before-install.sh
       timeout: 300
   ApplicationStart:
-    - location: /hooks_scripts/application-start.sh
+    - location: /hooks-scripts/application-start.sh
       timeout: 300
   ApplicationStop:
-    - location: /hooks_script/application-stop.sh
+    - location: /hooks-scripts/application-stop.sh
       timeout: 300
