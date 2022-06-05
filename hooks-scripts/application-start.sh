@@ -6,5 +6,5 @@ cd "/home/ec2-user/server"
 
 npm install
 
-sudo pm2 start --name=backend npm -- prod
+sudo pm2 start "npm run prod" --name=backend
 sudo pm2 save
