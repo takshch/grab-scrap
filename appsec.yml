@@ -1,15 +1,15 @@
 version: 0.0
 os: linux
 files:
-  - source: '/backend'
+  - source: /backend
     destination: /home/ec2-user/server
 hooks:
   BeforeInstall:
-    - location: /hooks-scripts/before-install.sh
+    - location: hooks-scripts/before-install.sh
       timeout: 300
   ApplicationStart:
-    - location: /hooks-scripts/application-start.sh
+    - location: hooks-scripts/application-start.sh
       timeout: 300
   ApplicationStop:
-    - location: /hooks-scripts/application-stop.sh
+    - location: hooks-scripts/application-stop.sh
       timeout: 300
