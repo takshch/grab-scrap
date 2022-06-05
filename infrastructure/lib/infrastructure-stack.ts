@@ -6,6 +6,7 @@ import { AmazonLinuxGeneration, Instance, InstanceClass, InstanceSize, InstanceT
 import { ManagedPolicy, Role, ServicePrincipal } from 'aws-cdk-lib/aws-iam';
 import { Construct } from 'constructs';
 import { readFileSync } from 'fs';
+import { EC2_TAG_NAME, EC2_TAG_VALUE } from '../bin/infrastructure';
 
 // import * as sqs from 'aws-cdk-lib/aws-sqs';
 
@@ -69,7 +70,9 @@ export class InfrastructureStack extends Stack {
       application: app,
       deploymentGroupName: 'grab-scrap-dg',
       deploymentConfig: ServerDeploymentConfig.ALL_AT_ONCE,
-      ec2InstanceTags: new InstanceTagSet({}),
+      ec2InstanceTags: new InstanceTagSet({
+        [EC2_TAG_NAME]: [EC2_TAG_VALUE]
+      }),
       installAgent: true
     });
 
