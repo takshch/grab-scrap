@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # create our working directory if it doesnt exist
-DIR="$HOME/server"
+DIR="/home/ec2-user/server"
 if [ -d "$DIR" ]; then
   echo "${DIR} exists"
 else
