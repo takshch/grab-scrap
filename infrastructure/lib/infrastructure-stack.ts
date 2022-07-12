@@ -87,7 +87,7 @@ export class InfrastructureStack extends Stack {
       actionName: 'Github-Source',
       owner: 'takshch',
       repo: 'grab-scrap',
-      oauthToken: SecretValue.secretsManager('github-token'),
+      oauthToken: SecretValue.secretsManager('git-token'),
       output: githubArtifact,
       branch: 'main',
     });
